@@ -1,0 +1,12 @@
+{
+  "name": "LiveChart",
+  "search_url": "https://www.livechart.me/search?q={query}",
+  "selectors": {
+    "container": ".anime-item",
+    "title": ".anime-item-title",
+    "episode": ".anime-item-episode",
+    "link": "a",
+    "rating": ".anime-item-rating"
+  },
+  "infinite_scroll": false
+}

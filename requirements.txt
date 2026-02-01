@@ -1,0 +1,8 @@
+typer
+rich
+playwright
+pydantic
+aiohttp
+beautifulsoup4
+pytest
+pytest-asyncio

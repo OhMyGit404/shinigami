@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+.venv
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# IDEs
+.vscode/
+.idea/
+
+# Playwright
+test-results/
+
+# Shinigami
+artifacts/
