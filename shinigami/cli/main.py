@@ -1,5 +1,6 @@
 import asyncio
 import json
+import os
 import typer
 from rich.console import Console
 from rich.table import Table
@@ -91,6 +92,51 @@ def debug(provider_name: str, query: str = "One Piece"):
         console.print(Panel(json.dumps([r.dict() for r in results], indent=2), title="Raw JSON Output"))
     except Exception as e:
         console.print(f"[red]Error during debug:[/red] {e}")
+
+@app.command()
+def wizard():
+    """
+    (Interactive) Create a new provider recipe.
+    """
+    console.print(Panel("[bold cyan]Shinigami Recipe Wizard[/bold cyan]\nLet's create a new provider!", border_style="cyan"))
+
+    name = typer.prompt("Provider Name (e.g. MyAnimeSite)")
+    search_url = typer.prompt("Search URL (use {query} as placeholder)", default="https://example.com/search?q={query}")
+    
+    console.print("\n[bold]CSS Selectors[/bold]")
+    container = typer.prompt("Container Selector (holds each result)", default=".item")
+    title = typer.prompt("Title Selector", default=".title")
+    episode = typer.prompt("Episode Selector (optional)", default=".ep", show_default=True)
+    link = typer.prompt("Link Selector (usually 'a')", default="a")
+    
+    infinite = typer.confirm("Does this site use infinite scrolling?", default=False)
+
+    recipe = {
+        "name": name,
+        "search_url": search_url,
+        "selectors": {
+            "container": container,
+            "title": title,
+            "episode": episode,
+            "link": link
+        },
+        "infinite_scroll": infinite
+    }
+
+    # Clean empty optionals
+    if not episode:
+        del recipe["selectors"]["episode"]
+
+    filename = name.lower().replace(" ", "") + ".json"
+    path = os.path.join("shinigami", "providers", filename)
+    
+    try:
+        with open(path, "w") as f:
+            json.dump(recipe, f, indent=2)
+        console.print(f"\n[bold green]Success![/bold green] Recipe saved to [underline]{path}[/underline]")
+        console.print(f"Test it with: [yellow]shinigami debug \"{name}\"[/yellow]")
+    except Exception as e:
+        console.print(f"[bold red]Error saving file:[/bold red] {e}")
 
 if __name__ == "__main__":
     app()

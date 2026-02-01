@@ -1,0 +1,11 @@
+{
+    "name": "GogoAnime",
+    "search_url": "https://anitaku.so/search.html?keyword={query}",
+    "selectors": {
+        "container": ".last_episodes > ul > li",
+        "title": ".name a",
+        "episode": ".episode",
+        "link": ".name a"
+    },
+    "infinite_scroll": false
+}

@@ -1,0 +1,12 @@
+{
+    "name": "HiAnime",
+    "search_url": "https://hianime.to/search?keyword={query}",
+    "selectors": {
+        "container": ".flw-item",
+        "title": ".film-name a",
+        "episode": ".tick-item.tick-eps",
+        "link": ".film-name a",
+        "rating": ".tick-item.tick-rate"
+    },
+    "infinite_scroll": false
+}

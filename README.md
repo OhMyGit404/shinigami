@@ -60,7 +60,21 @@ If a provider isn't working, debug it individually to see the raw data it return
 python -m shinigami.cli.main debug "LiveChart" --query "Naruto"
 ```
 
-##  Adding Providers
+### 4. Create Your Own Provider (Wizard)
+Use the interactive wizard to generate a new recipe without writing JSON manually.
+```bash
+python -m shinigami.cli.main wizard
+```
+
+## 🧩 Included Providers
+
+Shinigami comes with a "Starter Pack" of providers (thanks to YarrList):
+- **LiveChart** (Metadata)
+- **MyAnimeList** (Metadata)
+- **HiAnime** (Streaming)
+- **GogoAnime** (Streaming)
+
+## 🧩 Adding Providers Manually
 
 Create a new JSON file in `shinigami/providers/`. Example:
 

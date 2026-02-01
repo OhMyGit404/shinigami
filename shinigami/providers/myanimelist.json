@@ -1,0 +1,12 @@
+{
+    "name": "MyAnimeList",
+    "search_url": "https://myanimelist.net/anime.php?q={query}",
+    "selectors": {
+        "container": "tr:has(td.borderClass.bgColor0)",
+        "title": "a.hoverinfo_trigger strong",
+        "episode": "td.borderClass:nth-child(4)",
+        "link": "a.hoverinfo_trigger",
+        "rating": "td.borderClass:nth-child(5)"
+    },
+    "infinite_scroll": false
+}
