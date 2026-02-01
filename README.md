@@ -37,22 +37,25 @@ Shinigami acts as a metasearch engine for anime:
    playwright install
    ```
 
-##  Usage
+## 🛠 Usage
 
-### Search for Anime
-Search across all configured providers:
-```bash
-python -m shinigami.cli.main search "One Piece"
-```
-
-### List Providers
-See which JSON recipes are currently loaded:
+### 1. List Available Providers
+See which websites Shinigami is currently configured to scrape.
+![List Demo](assets/list_demo.svg)
 ```bash
 python -m shinigami.cli.main list-providers
 ```
 
-### Debug a Provider
-Test a specific provider and see the raw output:
+### 2. Search for Anime
+Search across all providers simultaneously. The results are sorted and displayed in a unified table.
+![Search Demo](assets/search_demo.svg)
+```bash
+python -m shinigami.cli.main search "One Piece"
+```
+
+### 3. Debug a Provider
+If a provider isn't working, debug it individually to see the raw data it returns.
+![Debug Demo](assets/debug_demo.svg)
 ```bash
 python -m shinigami.cli.main debug "LiveChart" --query "Naruto"
 ```
