@@ -98,6 +98,24 @@ Create a new JSON file in `shinigami/providers/`. Example:
 }
 ```
 
+## ⚠️ Troubleshooting
+
+### Links leading to wrong pages?
+If you select a result and it takes you to a different anime, or if the data looks "jumbled", the **CSS Selectors** in your provider recipe are likely incorrect.
+- **Title Selector**: Must capture *only* the title text.
+- **Link Selector**: Must be the `<a>` tag pointing to the specific anime page.
+- **Container**: Must wrap *exactly* one search result item.
+
+To fix this, use the `debug` command to check what the scraper is seeing:
+```bash
+python -m shinigami.cli.main debug "ProviderName" --query "One Piece"
+```
+
+### No results found?
+- Check if the site is reachable from your browser.
+- Ensure the `search_url` correctly includes the `{query}` placeholder.
+- Verify that your `container` selector matches the visual elements on the site.
+
 ## License
 
 This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)** - see the [LICENSE](LICENSE) file for details.
