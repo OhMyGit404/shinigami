@@ -126,3 +126,10 @@ This project is licensed under the **GNU Affero General Public License v3.0 (AGP
 - **propietary/Commercial License** for businesses using it in closed-source applications.
 
 Contact us for commercial licensing inquiries.
+
+## 📊 Open Dataset
+We maintain a curated dataset of popular anime metadata in `data/anime_dataset.csv`.
+You can hydrate or update this dataset using our script:
+```bash
+python scripts/hydrate_dataset.py
+```
