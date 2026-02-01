@@ -2,7 +2,6 @@
 import asyncio
 import csv
 import os
-import aiofiles
 from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn
 from shinigami.core.engine import ShinigamiEngine, BrowserManager
