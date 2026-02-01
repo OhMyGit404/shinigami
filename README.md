@@ -11,7 +11,7 @@
 
 ![Shinigami Demo](assets/demo.svg)
 
-## 🏗 How It Works
+##  How It Works
 
 Shinigami acts as a metasearch engine for anime:
 1. **Aggregates** query results from multiple providers (defined in JSON).
