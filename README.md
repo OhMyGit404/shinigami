@@ -9,6 +9,16 @@
 - **Human Emulation**: Rotates User-Agents and adds random delays to avoid detection.
 - **Rich UI**: Tables, status spinners, and colored output.
 
+![Shinigami Demo](assets/demo.svg)
+
+## 🏗 How It Works
+
+Shinigami acts as a metasearch engine for anime:
+1. **Aggregates** query results from multiple providers (defined in JSON).
+2. **Emulates** a real user browser using `playwright` to bypass bot protections.
+3. **Parses** the HTML using CSS selectors to extract titles, episodes, and links.
+4. **Displays** the data in a sorted, interactive terminal table.
+
 ##  Installation
 
 1. **Clone the repository**
