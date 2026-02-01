@@ -4,23 +4,66 @@ import random
 import glob
 import os
 from typing import List, Optional, Dict, Any
-from pydantic import BaseModel
-from playwright.async_api import async_playwright, Browser, Page
+from pydantic import BaseModel, Field
+from playwright.async_api import async_playwright, Browser, Page, Playwright
 
 # --- Models ---
 
 class SearchResult(BaseModel):
     title: str
     source: str
-    episodes: Optional[str] = None
     url: str
     rank: int = 0
+    # Flexible fields
+    type: str = "streaming" # streaming, metadata, download
+    meta: Dict[str, Any] = Field(default_factory=dict) # score, status, image_url
+    payload: Optional[str] = None # magnet link, embed url, etc
+    
+    # Backwards compatibility helper (optional, can be removed if strictly migrating)
+    @property
+    def episodes(self) -> Optional[str]:
+        return str(self.meta.get("episodes")) if self.meta.get("episodes") else None
 
 class ProviderRecipe(BaseModel):
     name: str
     search_url: str
     selectors: Dict[str, str]
     infinite_scroll: bool = False
+
+# --- Core Mechanics ---
+
+class BrowserManager:
+    """
+    Singleton-like manager for the Playwright browser instance.
+    Ensures we don't spawn multiple browsers and handles cleanup.
+    """
+    def __init__(self):
+        self._playwright: Optional[Playwright] = None
+        self._browser: Optional[Browser] = None
+        self._lock = asyncio.Lock()
+
+    async def get_browser(self) -> Browser:
+        async with self._lock:
+            if not self._browser:
+                self._playwright = await async_playwright().start()
+                self._browser = await self._playwright.chromium.launch(headless=True)
+            return self._browser
+
+    async def close(self):
+        async with self._lock:
+            if self._browser:
+                await self._browser.close()
+                self._browser = None
+            if self._playwright:
+                await self._playwright.stop()
+                self._playwright = None
+
+    async def __aenter__(self):
+        await self.get_browser()
+        return self
+
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        await self.close()
 
 # --- Engine ---
 
@@ -51,13 +94,20 @@ class ShinigamiEngine:
     async def _scrape_provider(self, browser: Browser, provider: ProviderRecipe, query: str) -> List[SearchResult]:
         """Scrapes a single provider for the given query."""
         results = []
-        page = await browser.new_page(
-            user_agent=random.choice(self.user_agents)
-        )
         
+        # Guard clause for new users who might select invalid text selectors
+        # We need to be careful with context creation
+        try:
+            page = await browser.new_page(
+                user_agent=random.choice(self.user_agents)
+            )
+        except Exception as e:
+            # Browser might be closed?
+            return []
+
         try:
             url = provider.search_url.replace("{query}", query)
-            await page.goto(url, wait_until="domcontentloaded")
+            await page.goto(url, wait_until="domcontentloaded", timeout=15000) # 15s timeout
             
             # Random delay for human emulation
             await page.wait_for_timeout(random.randint(500, 1500))
@@ -70,18 +120,15 @@ class ShinigamiEngine:
 
             # Wait for container if specified, else generic wait
             container_sel = provider.selectors.get("container")
-            if container_sel:
-                try:
-                    await page.wait_for_selector(container_sel, timeout=5000)
-                except:
-                    # If selector not found, might mean no results or different structure
-                    pass
+            if not container_sel:
+                return []
+
+            try:
+                await page.wait_for_selector(container_sel, timeout=5000)
+            except:
+                pass
             
-            # Extract data
-            # We'll use evaluate to extract all at once for better performance/stability than loop elements in py
-            # But for simplicity/readability with playwright elements:
-            
-            elements = await page.query_selector_all(provider.selectors.get("container", "body"))
+            elements = await page.query_selector_all(container_sel)
             
             for index, el in enumerate(elements):
                 try:
@@ -95,9 +142,6 @@ class ShinigamiEngine:
                     if link_sel:
                         href = await el.eval_on_selector(link_sel, "e => e.getAttribute('href')")
                         if href and not href.startswith("http"):
-                             # Simple join, rigorous would use urljoin
-                             base = url.split("?")[0] # Very rough base extraction, ideally valid from recette
-                             # Let's just assume we need to join with domain
                              from urllib.parse import urljoin
                              link = urljoin(url, href)
                         else:
@@ -107,20 +151,28 @@ class ShinigamiEngine:
 
                     episodes = await el.eval_on_selector(ep_sel, "e => e.innerText") if ep_sel else None
                     
+                    # Determine type and metadata
+                    meta = {}
+                    if episodes:
+                        meta["episodes"] = episodes.strip()
+                    
+                    # Basic heuristic for type
+                    result_type = "streaming"
+                    if "myanimelist" in provider.name.lower() or "livechart" in provider.name.lower():
+                        result_type = "metadata"
+
                     results.append(SearchResult(
                         title=title.strip(),
                         source=provider.name,
-                        episodes=episodes.strip() if episodes else None,
                         url=link,
-                        rank=index + 1
+                        rank=index + 1,
+                        type=result_type,
+                        meta=meta
                     ))
                 except Exception as e:
-                    # Skip incomplete items
                     continue
                     
         except Exception as e:
-            # In a real app, use logging
-            # print(f"Error scraping {provider.name}: {e}")
             pass
         finally:
             await page.close()
@@ -128,14 +180,52 @@ class ShinigamiEngine:
         return results
 
     async def search(self, query: str) -> List[SearchResult]:
-        """Concurrently searches all loaded providers."""
-        async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True)
+        """Concurrently searches all loaded providers using BrowserManager."""
+        async with BrowserManager() as manager:
+            browser = await manager.get_browser()
             tasks = [self._scrape_provider(browser, provider, query) for provider in self.providers]
             all_results = await asyncio.gather(*tasks)
-            await browser.close()
             
             # Flatten list
             flat_results = [item for sublist in all_results for item in sublist]
-            # Simple relevance sort (placeholder)
             return flat_results
+
+    async def validate_selector(self, search_url: str, query: str, selector: str) -> List[str]:
+        """
+        Validates a CSS selector by running it against a real browser.
+        Returns a list of text content found (up to 5 items).
+        """
+        results = []
+        if not selector:
+            return []
+            
+        async with BrowserManager() as manager:
+            browser = await manager.get_browser()
+            page = await browser.new_page(
+                user_agent=random.choice(self.user_agents)
+            )
+            try:
+                url = search_url.replace("{query}", query)
+                await page.goto(url, wait_until="domcontentloaded", timeout=10000)
+                
+                try:
+                    await page.wait_for_selector(selector, timeout=3000)
+                except:
+                    return ["Error: Timeout waiting for selector"]
+
+                elements = await page.query_selector_all(selector)
+                if not elements:
+                    return []
+                
+                # Extract text from first 5
+                for i, el in enumerate(elements[:5]):
+                    text = await el.text_content()
+                    if text:
+                        results.append(text.strip())
+            except Exception as e:
+                return [f"Error: {str(e)}"]
+            finally:
+                await page.close()
+                
+        return results
+

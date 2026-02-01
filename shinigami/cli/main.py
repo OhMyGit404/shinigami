@@ -80,16 +80,14 @@ def debug(provider_name: str, query: str = "One Piece"):
     console.print(f"[bold]Query:[/bold] {query}")
     
     async def run_debug():
-        from playwright.async_api import async_playwright
-        async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True)
-            results = await engine._scrape_provider(browser, target_provider, query)
-            await browser.close()
-            return results
+        from shinigami.core.engine import BrowserManager
+        async with BrowserManager() as manager:
+            browser = await manager.get_browser()
+            return await engine._scrape_provider(browser, target_provider, query)
 
     try:
         results = asyncio.run(run_debug())
-        console.print(Panel(json.dumps([r.dict() for r in results], indent=2), title="Raw JSON Output"))
+        console.print(Panel(json.dumps([r.dict() for r in results], indent=2, default=str), title="Raw JSON Output"))
     except Exception as e:
         console.print(f"[red]Error during debug:[/red] {e}")
 
@@ -103,11 +101,38 @@ def wizard():
     name = typer.prompt("Provider Name (e.g. MyAnimeSite)")
     search_url = typer.prompt("Search URL (use {query} as placeholder)", default="https://example.com/search?q={query}")
     
+    test_query = typer.prompt("Test Query for Validation", default="One Piece")
+    console.print(f"[dim]We will use '{test_query}' to validate your selectors.[/dim]")
+
+    def validate(selector_name: str, default: str) -> str:
+        while True:
+            sel = typer.prompt(f"{selector_name}", default=default)
+            if not sel:
+                if selector_name == "Episode Selector (optional)":
+                    return ""
+                continue # Required
+
+            with console.status(f"[bold yellow]Validating '{sel}'..."):
+                found = asyncio.run(engine.validate_selector(search_url, test_query, sel))
+            
+            if found and not found[0].startswith("Error"):
+                console.print(f"[bold green]✅ Found {len(found)} elements![/bold green]")
+                console.print(f"[dim]Preview: {found[:3]}[/dim]")
+                if typer.confirm("Keep this selector?", default=True):
+                    return sel
+            else:
+                msg = found[0] if found else "No elements found."
+                console.print(f"[bold red]❌ {msg}[/bold red]")
+                if typer.confirm("Use it anyway?", default=False):
+                    return sel
+                # Loop back to prompt
+
     console.print("\n[bold]CSS Selectors[/bold]")
-    container = typer.prompt("Container Selector (holds each result)", default=".item")
-    title = typer.prompt("Title Selector", default=".title")
-    episode = typer.prompt("Episode Selector (optional)", default=".ep", show_default=True)
-    link = typer.prompt("Link Selector (usually 'a')", default="a")
+    
+    container = validate("Container Selector (holds each result)", ".item")
+    title = validate("Title Selector", ".title")
+    episode = validate("Episode Selector (optional)", ".ep")
+    link = validate("Link Selector (usually 'a')", "a")
     
     infinite = typer.confirm("Does this site use infinite scrolling?", default=False)
 
