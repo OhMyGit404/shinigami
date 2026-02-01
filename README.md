@@ -1,8 +1,8 @@
-# Shinigami 🍎
+# Shinigami
 
 **Shinigami** is a CLI-based Content Discovery Engine that aggregates anime metadata from multiple websites. It uses **Playwright** for high-performance async scraping and **Typer** + **Rich** for a beautiful terminal interface.
 
-##  Features
+## Features
 
 - **Multi-Provider Support**: Easily modifiable JSON recipes to add new sources.
 - **Async Concurrency**: Scrape 5+ sites simultaneously.
@@ -11,7 +11,7 @@
 
 ![Shinigami Demo](assets/demo.svg)
 
-##  How It Works
+## How It Works
 
 Shinigami acts as a metasearch engine for anime:
 1. **Aggregates** query results from multiple providers (defined in JSON).
@@ -19,7 +19,7 @@ Shinigami acts as a metasearch engine for anime:
 3. **Parses** the HTML using CSS selectors to extract titles, episodes, and links.
 4. **Displays** the data in a sorted, interactive terminal table.
 
-##  Installation
+## Installation
 
 1. **Clone the repository**
    ```bash
@@ -37,7 +37,7 @@ Shinigami acts as a metasearch engine for anime:
    playwright install
    ```
 
-## 🛠 Usage
+## Usage
 
 ### 1. List Available Providers
 See which websites Shinigami is currently configured to scrape.
@@ -61,12 +61,19 @@ python -m shinigami.cli.main debug "LiveChart" --query "Naruto"
 ```
 
 ### 4. Create Your Own Provider (Wizard)
-Use the interactive wizard to generate a new recipe without writing JSON manually.
+Shinigami includes an **interactive wizard** that guides you through creating a new provider recipe.
+Instead of manually editing JSON files, the wizard prompts you for:
+- **Site Name**: The name of the provider.
+- **Search URL**: The URL used to search on the site (with `{query}` placeholder).
+- **CSS Selectors**: The specific CSS classes for the container, title, episode, and link.
+
+![Wizard Demo](assets/wizard_demo.svg)
+
 ```bash
 python -m shinigami.cli.main wizard
 ```
 
-## 🧩 Included Providers
+## Included Providers
 
 Shinigami comes with a "Starter Pack" of providers (thanks to YarrList):
 - **LiveChart** (Metadata)
@@ -74,7 +81,7 @@ Shinigami comes with a "Starter Pack" of providers (thanks to YarrList):
 - **HiAnime** (Streaming)
 - **GogoAnime** (Streaming)
 
-## 🧩 Adding Providers Manually
+## Adding Providers Manually
 
 Create a new JSON file in `shinigami/providers/`. Example:
 
@@ -91,7 +98,7 @@ Create a new JSON file in `shinigami/providers/`. Example:
 }
 ```
 
-##  License
+## License
 
 This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)** - see the [LICENSE](LICENSE) file for details.
 
