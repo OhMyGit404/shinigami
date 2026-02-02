@@ -1,17 +1,22 @@
-# Shinigami
+# Shinigami 🍎
+
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
+![License](https://img.shields.io/badge/License-AGPLv3-red)
+![Status](https://img.shields.io/badge/Status-Active-green)
 
 **Shinigami** is a CLI-based Content Discovery Engine that aggregates anime metadata from multiple websites. It uses **Playwright** for high-performance async scraping and **Typer** + **Rich** for a beautiful terminal interface.
 
-## Features
+## ✨ Features
 
-- **Multi-Provider Support**: Easily modifiable JSON recipes to add new sources.
-- **Async Concurrency**: Scrape 5+ sites simultaneously.
-- **Human Emulation**: Rotates User-Agents and adds random delays to avoid detection.
-- **Rich UI**: Tables, status spinners, and colored output.
+- **🔍 Multi-Provider Support**: Scrape 5+ sites simultaneously (Streaming & Metadata).
+- **🧙‍♂️ Interactive Wizard**: Create new provider recipes in seconds with real-time validation.
+- **🚀 High Performance**: Async concurrency with a persistent `BrowserManager`.
+- **📊 Open Dataset**: Includes a built-in hydration script to build your own anime database.
+- **🛡️ Human Emulation**: Rotates User-Agents and adds random delays to avoid detection.
 
 ![Shinigami Demo](assets/demo.svg)
 
-## How It Works
+## 🏗 How It Works
 
 Shinigami acts as a metasearch engine for anime:
 1. **Aggregates** query results from multiple providers (defined in JSON).
@@ -60,18 +65,16 @@ If a provider isn't working, debug it individually to see the raw data it return
 python -m shinigami.cli.main debug "LiveChart" --query "Naruto"
 ```
 
-### 4. Create Your Own Provider (Wizard)
-Shinigami includes an **interactive wizard** that guides you through creating a new provider recipe.
-Instead of manually editing JSON files, the wizard prompts you for:
-- **Site Name**: The name of the provider.
-- **Search URL**: The URL used to search on the site (with `{query}` placeholder).
-- **CSS Selectors**: The specific CSS classes for the container, title, episode, and link.
+### 4. 🧙‍♂️ Create Your Own Provider (Wizard)
+Shinigami includes a powerful **Interactive Wizard** that lets you build scraper recipes without writing code.
+It spins up a background browser to **test your CSS selectors in real-time** as you type them.
 
 ![Wizard Demo](assets/wizard_demo.svg)
 
 ```bash
 python -m shinigami.cli.main wizard
 ```
+*Note: The wizard will verify if your selector actually finds elements on the page!*
 
 ## Included Providers
 
