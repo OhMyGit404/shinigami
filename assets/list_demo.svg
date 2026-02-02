@@ -1,97 +1,64 @@
-<svg class="rich-terminal" viewBox="0 0 994 269.6" xmlns="http://www.w3.org/2000/svg">
-    <!-- Generated with Rich https://www.textualize.io -->
-    <style>
-
-    @font-face {
-        font-family: "Fira Code";
-        src: local("FiraCode-Regular"),
-                url("https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/woff2/FiraCode-Regular.woff2") format("woff2"),
-                url("https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/woff/FiraCode-Regular.woff") format("woff");
-        font-style: normal;
-        font-weight: 400;
-    }
-    @font-face {
-        font-family: "Fira Code";
-        src: local("FiraCode-Bold"),
-                url("https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/woff2/FiraCode-Bold.woff2") format("woff2"),
-                url("https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/woff/FiraCode-Bold.woff") format("woff");
-        font-style: bold;
-        font-weight: 700;
-    }
-
-    .terminal-1130436349-matrix {
-        font-family: Fira Code, monospace;
-        font-size: 20px;
-        line-height: 24.4px;
-        font-variant-east-asian: full-width;
-    }
-
-    .terminal-1130436349-title {
-        font-size: 18px;
-        font-weight: bold;
-        font-family: arial;
-    }
-
-    .terminal-1130436349-r1 { fill: #98a84b;font-weight: bold }
-.terminal-1130436349-r2 { fill: #c5c8c6 }
-.terminal-1130436349-r3 { fill: #68a0b3;font-weight: bold }
-.terminal-1130436349-r4 { fill: #c5c8c6;font-style: italic; }
-.terminal-1130436349-r5 { fill: #c5c8c6;font-weight: bold }
-.terminal-1130436349-r6 { fill: #68a0b3 }
-.terminal-1130436349-r7 { fill: #98729f }
-.terminal-1130436349-r8 { fill: #98a84b }
-    </style>
-
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="terminal" baseProfile="full" viewBox="0 0 911 421" width="911" version="1.1">
     <defs>
-    <clipPath id="terminal-1130436349-clip-terminal">
-      <rect x="0" y="0" width="975.0" height="218.6" />
-    </clipPath>
-    <clipPath id="terminal-1130436349-line-0">
-    <rect x="0" y="1.5" width="976" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-1130436349-line-1">
-    <rect x="0" y="25.9" width="976" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-1130436349-line-2">
-    <rect x="0" y="50.3" width="976" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-1130436349-line-3">
-    <rect x="0" y="74.7" width="976" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-1130436349-line-4">
-    <rect x="0" y="99.1" width="976" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-1130436349-line-5">
-    <rect x="0" y="123.5" width="976" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-1130436349-line-6">
-    <rect x="0" y="147.9" width="976" height="24.65"/>
-            </clipPath>
-<clipPath id="terminal-1130436349-line-7">
-    <rect x="0" y="172.3" width="976" height="24.65"/>
-            </clipPath>
-    </defs>
+        <termtosvg:template_settings xmlns:termtosvg="https://github.com/nbedos/termtosvg">
+            <termtosvg:screen_geometry columns="108" rows="20"/>
+            <termtosvg:animation type="css"/>
+        </termtosvg:template_settings>
+        <style type="text/css" id="generated-style"><![CDATA[#screen {
+                font-family: 'DejaVu Sans Mono', monospace;
+                font-style: normal;
+                font-size: 14px;
+            }
 
-    <rect fill="#292929" stroke="rgba(255,255,255,0.35)" stroke-width="1" x="1" y="1" width="992" height="267.6" rx="8"/><text class="terminal-1130436349-title" fill="#c5c8c6" text-anchor="middle" x="496" y="27">List&#160;Providers</text>
-            <g transform="translate(26,22)">
-            <circle cx="0" cy="0" r="7" fill="#ff5f57"/>
-            <circle cx="22" cy="0" r="7" fill="#febc2e"/>
-            <circle cx="44" cy="0" r="7" fill="#28c840"/>
-            </g>
-        
-    <g transform="translate(9, 41)" clip-path="url(#terminal-1130436349-clip-terminal)">
+        text {
+            dominant-baseline: text-before-edge;
+            white-space: pre;
+        }
     
-    <g class="terminal-1130436349-matrix">
-    <text class="terminal-1130436349-r1" x="0" y="20" textLength="12.2" clip-path="url(#terminal-1130436349-line-0)">➜</text><text class="terminal-1130436349-r3" x="24.4" y="20" textLength="292.8" clip-path="url(#terminal-1130436349-line-0)">shinigami&#160;list-providers</text><text class="terminal-1130436349-r2" x="976" y="20" textLength="12.2" clip-path="url(#terminal-1130436349-line-0)">
-</text><text class="terminal-1130436349-r4" x="0" y="44.4" textLength="976" clip-path="url(#terminal-1130436349-line-1)">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Loaded&#160;Providers&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</text><text class="terminal-1130436349-r2" x="976" y="44.4" textLength="12.2" clip-path="url(#terminal-1130436349-line-1)">
-</text><text class="terminal-1130436349-r2" x="0" y="68.8" textLength="976" clip-path="url(#terminal-1130436349-line-2)">┏━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓</text><text class="terminal-1130436349-r2" x="976" y="68.8" textLength="12.2" clip-path="url(#terminal-1130436349-line-2)">
-</text><text class="terminal-1130436349-r2" x="0" y="93.2" textLength="12.2" clip-path="url(#terminal-1130436349-line-3)">┃</text><text class="terminal-1130436349-r5" x="24.4" y="93.2" textLength="134.2" clip-path="url(#terminal-1130436349-line-3)">Name&#160;&#160;&#160;&#160;&#160;&#160;&#160;</text><text class="terminal-1130436349-r2" x="170.8" y="93.2" textLength="12.2" clip-path="url(#terminal-1130436349-line-3)">┃</text><text class="terminal-1130436349-r5" x="195.2" y="93.2" textLength="536.8" clip-path="url(#terminal-1130436349-line-3)">URL&#160;Template&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</text><text class="terminal-1130436349-r2" x="744.2" y="93.2" textLength="12.2" clip-path="url(#terminal-1130436349-line-3)">┃</text><text class="terminal-1130436349-r5" x="768.6" y="93.2" textLength="183" clip-path="url(#terminal-1130436349-line-3)">Infinite&#160;Scroll</text><text class="terminal-1130436349-r2" x="963.8" y="93.2" textLength="12.2" clip-path="url(#terminal-1130436349-line-3)">┃</text><text class="terminal-1130436349-r2" x="976" y="93.2" textLength="12.2" clip-path="url(#terminal-1130436349-line-3)">
-</text><text class="terminal-1130436349-r2" x="0" y="117.6" textLength="976" clip-path="url(#terminal-1130436349-line-4)">┡━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩</text><text class="terminal-1130436349-r2" x="976" y="117.6" textLength="12.2" clip-path="url(#terminal-1130436349-line-4)">
-</text><text class="terminal-1130436349-r2" x="0" y="142" textLength="12.2" clip-path="url(#terminal-1130436349-line-5)">│</text><text class="terminal-1130436349-r6" x="24.4" y="142" textLength="134.2" clip-path="url(#terminal-1130436349-line-5)">LiveChart&#160;&#160;</text><text class="terminal-1130436349-r2" x="170.8" y="142" textLength="12.2" clip-path="url(#terminal-1130436349-line-5)">│</text><text class="terminal-1130436349-r7" x="195.2" y="142" textLength="536.8" clip-path="url(#terminal-1130436349-line-5)">https://www.livechart.me/search?q={query}&#160;&#160;&#160;</text><text class="terminal-1130436349-r2" x="744.2" y="142" textLength="12.2" clip-path="url(#terminal-1130436349-line-5)">│</text><text class="terminal-1130436349-r8" x="768.6" y="142" textLength="183" clip-path="url(#terminal-1130436349-line-5)">False&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</text><text class="terminal-1130436349-r2" x="963.8" y="142" textLength="12.2" clip-path="url(#terminal-1130436349-line-5)">│</text><text class="terminal-1130436349-r2" x="976" y="142" textLength="12.2" clip-path="url(#terminal-1130436349-line-5)">
-</text><text class="terminal-1130436349-r2" x="0" y="166.4" textLength="12.2" clip-path="url(#terminal-1130436349-line-6)">│</text><text class="terminal-1130436349-r6" x="24.4" y="166.4" textLength="134.2" clip-path="url(#terminal-1130436349-line-6)">AniList&#160;&#160;&#160;&#160;</text><text class="terminal-1130436349-r2" x="170.8" y="166.4" textLength="12.2" clip-path="url(#terminal-1130436349-line-6)">│</text><text class="terminal-1130436349-r7" x="195.2" y="166.4" textLength="536.8" clip-path="url(#terminal-1130436349-line-6)">https://anilist.co/search/anime?search={que…</text><text class="terminal-1130436349-r2" x="744.2" y="166.4" textLength="12.2" clip-path="url(#terminal-1130436349-line-6)">│</text><text class="terminal-1130436349-r8" x="768.6" y="166.4" textLength="183" clip-path="url(#terminal-1130436349-line-6)">True&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</text><text class="terminal-1130436349-r2" x="963.8" y="166.4" textLength="12.2" clip-path="url(#terminal-1130436349-line-6)">│</text><text class="terminal-1130436349-r2" x="976" y="166.4" textLength="12.2" clip-path="url(#terminal-1130436349-line-6)">
-</text><text class="terminal-1130436349-r2" x="0" y="190.8" textLength="12.2" clip-path="url(#terminal-1130436349-line-7)">│</text><text class="terminal-1130436349-r6" x="24.4" y="190.8" textLength="134.2" clip-path="url(#terminal-1130436349-line-7)">MyAnimeList</text><text class="terminal-1130436349-r2" x="170.8" y="190.8" textLength="12.2" clip-path="url(#terminal-1130436349-line-7)">│</text><text class="terminal-1130436349-r7" x="195.2" y="190.8" textLength="536.8" clip-path="url(#terminal-1130436349-line-7)">https://myanimelist.net/anime.php?q={query}&#160;</text><text class="terminal-1130436349-r2" x="744.2" y="190.8" textLength="12.2" clip-path="url(#terminal-1130436349-line-7)">│</text><text class="terminal-1130436349-r8" x="768.6" y="190.8" textLength="183" clip-path="url(#terminal-1130436349-line-7)">False&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</text><text class="terminal-1130436349-r2" x="963.8" y="190.8" textLength="12.2" clip-path="url(#terminal-1130436349-line-7)">│</text><text class="terminal-1130436349-r2" x="976" y="190.8" textLength="12.2" clip-path="url(#terminal-1130436349-line-7)">
-</text><text class="terminal-1130436349-r2" x="0" y="215.2" textLength="976" clip-path="url(#terminal-1130436349-line-8)">└─────────────┴──────────────────────────────────────────────┴─────────────────┘</text><text class="terminal-1130436349-r2" x="976" y="215.2" textLength="12.2" clip-path="url(#terminal-1130436349-line-8)">
-</text>
-    </g>
-    </g>
+            :root {
+                --animation-duration: 1000ms;
+            }
+
+            @keyframes roll {
+                0.000%{transform:translateY(0px)}
+100.000%{transform:translateY(0px)}
+            }
+
+            #screen_view {
+                animation-duration: 1000ms;
+                animation-iteration-count:infinite;
+                animation-name:roll;
+                animation-timing-function: steps(1,end);
+                animation-fill-mode: forwards;
+            }
+        ]]></style>
+        <style type="text/css" id="user-style">
+            /* The colors defined below are the default 16 colors used for rendering text of the terminal. Adjust
+               them as needed.
+               gjm8 color theme (source: https://terminal.sexy/) */
+            .foreground {fill: #f8f8f2}
+            .background {fill: #272822}
+            .color0 {fill: #272822}
+            .color1 {fill: #f92672}
+            .color2 {fill: #a6e22e}
+            .color3 {fill: #f4bf75}
+            .color4 {fill: #66d9ef}
+            .color5 {fill: #ae81ff}
+            .color6 {fill: #a1efe4}
+            .color7 {fill: #f8f8f2}
+            .color8 {fill: #75715e}
+            .color9 {fill: #fd971f}
+            .color10 {fill: #383830}
+            .color11 {fill: #49483e}
+            .color12 {fill: #a59f85}
+            .color13 {fill: #f5f4f1}
+            .color14 {fill: #cc6633}
+            .color15 {fill: #f9f8f5}
+        </style>
+    </defs>
+    <rect id="terminalui" class="background" width="100%" height="100%" ry="4.5826941"/>
+    <circle cx="24" cy="23" r="7" class="color1"/>
+    <circle cx="44" cy="23" r="7" class="color3"/>
+    <circle cx="64" cy="23" r="7" class="color2"/>
+    <svg id="screen" width="864" height="340" x="23" y="50" viewBox="0 0 864 340" preserveAspectRatio="xMidYMin slice"><rect class="background" height="100%" width="100%" x="0" y="0"/><defs><g id="g1"><text x="0" textLength="656" font-style="italic" class="foreground">                                 Loaded Providers                                 </text></g><g id="g2"><text x="0" textLength="656" class="foreground">&#9487;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9523;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9523;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9491;</text></g><g id="g3"><text x="0" textLength="8" class="foreground">&#9475;</text><text x="8" textLength="104" font-weight="bold" class="foreground"> Name        </text><text x="112" textLength="8" class="foreground">&#9475;</text><text x="120" textLength="384" font-weight="bold" class="foreground"> URL Template                                   </text><text x="504" textLength="8" class="foreground">&#9475;</text><text x="512" textLength="136" font-weight="bold" class="foreground"> Infinite Scroll </text><text x="648" textLength="8" class="foreground">&#9475;</text></g><g id="g4"><text x="0" textLength="656" class="foreground">&#9505;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9543;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9543;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9513;</text></g><g id="g5"><text x="0" textLength="8" class="foreground">&#9474;</text><text x="8" textLength="104" class="color6"> HiAnime     </text><text x="112" textLength="8" class="foreground">&#9474;</text><text x="120" textLength="384" class="color5"> https://hianime.to/search?keyword={query}      </text><text x="504" textLength="8" class="foreground">&#9474;</text><text x="512" textLength="136" class="color2"> False           </text><text x="648" textLength="8" class="foreground">&#9474;</text></g><g id="g6"><text x="0" textLength="8" class="foreground">&#9474;</text><text x="8" textLength="104" class="color6"> MyAnimeList </text><text x="112" textLength="8" class="foreground">&#9474;</text><text x="120" textLength="384" class="color5"> https://myanimelist.net/anime.php?q={query}    </text><text x="504" textLength="8" class="foreground">&#9474;</text><text x="512" textLength="136" class="color2"> False           </text><text x="648" textLength="8" class="foreground">&#9474;</text></g><g id="g7"><text x="0" textLength="8" class="foreground">&#9474;</text><text x="8" textLength="104" class="color6"> GogoAnime   </text><text x="112" textLength="8" class="foreground">&#9474;</text><text x="120" textLength="384" class="color5"> https://anitaku.so/search.html?keyword={query} </text><text x="504" textLength="8" class="foreground">&#9474;</text><text x="512" textLength="136" class="color2"> False           </text><text x="648" textLength="8" class="foreground">&#9474;</text></g><g id="g8"><text x="0" textLength="8" class="foreground">&#9474;</text><text x="8" textLength="104" class="color6"> LiveChart   </text><text x="112" textLength="8" class="foreground">&#9474;</text><text x="120" textLength="384" class="color5"> https://www.livechart.me/search?q={query}      </text><text x="504" textLength="8" class="foreground">&#9474;</text><text x="512" textLength="136" class="color2"> False           </text><text x="648" textLength="8" class="foreground">&#9474;</text></g><g id="g9"><text x="0" textLength="656" class="foreground">&#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9524;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9524;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;</text></g><g id="g10"><text x="0" textLength="8" class="background"> </text></g></defs><g id="screen_view"><g><use xlink:href="#g1" y="0"/><use xlink:href="#g2" y="17"/><use xlink:href="#g3" y="34"/><use xlink:href="#g4" y="51"/><use xlink:href="#g5" y="68"/><use xlink:href="#g6" y="85"/><use xlink:href="#g7" y="102"/><use xlink:href="#g8" y="119"/><use xlink:href="#g9" y="136"/><rect x="0" y="153" width="8" height="17" class="foreground"/><use xlink:href="#g10" y="153"/></g></g></svg>
 </svg>
